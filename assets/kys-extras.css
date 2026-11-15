@@ -1,143 +1,126 @@
 /* Zusätzliche Inhalte, die nach dem Framer-Export ergänzt wurden.
    Werden per assets/kys-extras.js eingefügt (Framer hydriert die Seite
-   und würde direkt ins HTML geschriebene Änderungen wieder entfernen). */
+   und würde direkt ins HTML geschriebene Änderungen wieder entfernen).
+   Typografie kommt aus den Framer-Text-Presets der Seite (framer-styles-preset-*),
+   hier wird nur das Layout nachgebaut: Abschnitte, weiße Karten, Listen. */
 
 /* Der kurze Hinweis "Auf Anfrage biete ich auch Yoga in Kindergärten & Kitas an!"
-   im Kontaktblock wird durch den eigenen Kursblock ersetzt. */
+   im Kontaktblock wird durch den eigenen Abschnitt ersetzt. */
 .framer-ww0xfm-container { display: none !important; }
 
-.kys-extras {
-  --kys-ink: #101010;
-  --kys-muted: #83817c;
-  --kys-green: #0f8534;
-  --kys-cream: #fbfbf9;
+/* Abschnitt wie #pricing / #about */
+.kys-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 80px 32px;
+  box-sizing: border-box;
+}
+.kys-section *, .kys-section *::before, .kys-section *::after { box-sizing: border-box; }
+
+.kys-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
   width: 100%;
   max-width: 1064px;
+}
+
+/* Titel + Untertitel wie "Meine Kurse", "Kontakt", "Über mich" */
+.kys-titles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: 640px;
   margin: 0 auto;
+}
+
+.kys-row {
+  display: flex;
+  gap: 40px;
+  align-items: stretch;
+}
+
+/* Weiße Karten wie im Kontakt- und Über-mich-Bereich */
+.kys-card {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  box-sizing: border-box;
-  font-family: "Neco", "Neco Placeholder", serif;
-  color: var(--kys-ink);
+  background: #fff;
+  border-radius: 20px;
+  padding: 40px;
 }
-.kys-extras *, .kys-extras *::before, .kys-extras *::after { box-sizing: border-box; }
+.kys-card--wide { flex: 2 1 0; }
+.kys-card--side { flex: 1 1 0; padding: 40px 32px; }
 
-.kys-card {
-  position: relative;
-  overflow: hidden;
-  border-radius: 16px;
-  background: var(--kys-cream);
-  border: 1px solid rgba(16, 16, 16, 0.08);
-  padding: 56px 56px;
-}
-.kys-card--feature {
-  background: linear-gradient(135deg, #eef6ef 0%, #fbfbf9 60%);
-  border-color: rgba(15, 133, 52, 0.18);
-}
-.kys-card--birthday {
-  background: linear-gradient(135deg, #fff4e6 0%, #fbfbf9 65%);
-  border-color: rgba(214, 140, 40, 0.22);
-}
-
-.kys-eyebrow {
-  display: inline-block;
-  margin: 0 0 16px;
-  padding: 6px 14px;
-  border-radius: 999px;
-  font-size: 14px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  background: rgba(15, 133, 52, 0.1);
-  color: var(--kys-green);
-}
-.kys-card--birthday .kys-eyebrow { background: rgba(214, 140, 40, 0.14); color: #a8650f; }
-
-.kys-title {
-  margin: 0 0 16px;
-  font-family: "Mazius Display", serif;
-  font-weight: 400;
-  line-height: 1.1;
-  font-size: 48px;
-  color: var(--kys-ink);
-}
-.kys-card--birthday .kys-title { font-size: 40px; }
-
-.kys-lead {
-  margin: 0 0 24px;
-  max-width: 720px;
-  font-family: "Neco Variable", "Neco", "Neco Placeholder", serif;
-  font-size: 20px;
-  line-height: 1.5;
-  color: #3b3a37;
-}
-
+/* Aufzählung wie in den Kurskarten: grüner Punkt + Text */
 .kys-list {
   list-style: none;
-  margin: 0 0 32px;
+  margin: 0;
   padding: 0;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 .kys-list li {
-  position: relative;
-  padding: 16px 16px 16px 44px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.75);
-  font-size: 17px;
-  line-height: 1.4;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
 }
-.kys-list li::before {
-  content: "";
-  position: absolute;
-  left: 16px;
-  top: 20px;
-  width: 14px;
-  height: 14px;
+.kys-list img {
+  flex: 0 0 16px;
+  width: 16px;
+  height: 16px;
+  margin-top: 3px;
   border-radius: 50%;
-  background: var(--kys-green);
-  opacity: 0.85;
+  object-fit: cover;
 }
-.kys-card--birthday .kys-list li::before { background: #d68c28; }
 
-.kys-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 14px 26px;
-  border-radius: 999px;
-  background: var(--kys-ink);
-  color: #fff !important;
-  text-decoration: none !important;
-  font-size: 17px;
-  transition: transform 0.15s ease, opacity 0.15s ease;
+/* Kontakt-Einträge wie "Telefon/Whatsapp" / "Email" */
+.kys-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
-.kys-cta:hover { transform: translateY(-1px); opacity: 0.9; }
+.kys-contact-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.kys-contact a {
+  color: inherit;
+  text-decoration: none;
+}
+.kys-contact a:hover { text-decoration: underline; }
 
-/* Footer-Links */
+/* Footer-Links, Typografie über Framer-Preset (wie "Ein Angebot von Flits") */
 .kys-footer-links {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 8px 24px;
-  margin: 0;
-  font-family: "Neco", "Neco Placeholder", serif;
-  font-size: 15px;
+  gap: 4px 20px;
+  --framer-text-color: #83817c;
   color: #83817c;
-  text-align: center;
 }
-.kys-footer-links a {
-  color: #101010;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-.kys-footer-links a:hover { color: #0f8534; }
 
 @media (max-width: 899px) {
-  .kys-card { padding: 32px 24px; }
-  .kys-title { font-size: 34px; }
-  .kys-card--birthday .kys-title { font-size: 30px; }
-  .kys-lead { font-size: 18px; }
-  .kys-list { grid-template-columns: 1fr; }
+  .kys-section { padding: 60px 12px; }
+  .kys-container { gap: 32px; }
+  .kys-row { flex-direction: column; gap: 20px; }
+  .kys-card, .kys-card--side { padding: 24px; }
+}
+
+/* Framer setzt Absatzabstände über margin-top; in den eigenen Karten
+   regeln wir Abstände über gap, wie die Framer-Stacks. */
+.kys-section .framer-text { margin: 0 !important; }
+.kys-card .framer-text { text-wrap: wrap !important; }
+/* Links im Footer wie "Impressum": dunkel und unterstrichen, Begleittext grau */
+.kys-footer-links span { color: #83817c; }
+.kys-footer-links a.framer-text {
+  --framer-text-decoration: underline;
+  --framer-link-text-color: #101010;
+  color: #101010;
+  text-decoration: underline;
 }
